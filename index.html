@@ -260,7 +260,7 @@
     <div id="passwordModal" class="fixed inset-0 bg-stone-900 bg-opacity-50 hidden items-center justify-center z-50">
         <div class="bg-white rounded-xl p-6 max-w-sm w-full shadow-2xl mx-4">
             <h3 class="font-bold text-lg mb-2 text-stone-800">Accés Docent</h3>
-            <p class="text-sm text-stone-600 mb-4">Introdueix la contrasenya per veure les respostes dels alumnes (pista: castelldefels2026).</p>
+            <p class="text-sm text-stone-600 mb-4">Introdueix la contrasenya per veure les respostes dels alumnes.</p>
             <input type="password" id="teacherPassword" class="w-full border-stone-300 border rounded-md p-2 mb-2 focus:ring-teal-500 focus:border-teal-500" placeholder="Contrasenya...">
             <p id="passwordError" class="text-rose-500 text-sm hidden mb-4">Contrasenya incorrecta.</p>
             <div class="flex justify-end gap-2 mt-4">
@@ -633,7 +633,7 @@
             if (typeof __app_id !== 'undefined') appId = __app_id;
         } else {
             // 2. Entorn definitiu (GitHub): Substitueix això pel que t'ha donat Firebase al Pas 2
-            const firebaseConfig = {
+            firebaseConfig = {
                 apiKey: "AIzaSyD9jHIEw4rZ-KEpixvMO894f64drNXfDS0",
                 authDomain: "auditoria-inclusiva-parcs-prim.firebaseapp.com",
                 projectId: "auditoria-inclusiva-parcs-prim",
