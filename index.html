@@ -177,9 +177,14 @@
                     <h2 class="text-2xl font-bold text-stone-800 mb-2">Panell de Professorat</h2>
                     <p class="text-stone-600">Dades recollides de totes les auditories enviades pels alumnes.</p>
                 </div>
-                <button onclick="window.loadAllAudits()" class="bg-teal-100 text-teal-800 px-4 py-2 rounded-md text-sm font-bold hover:bg-teal-200 transition-colors shadow-sm flex items-center gap-2">
-                    <span>🔄</span> Actualitzar dades
-                </button>
+                <div class="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+                    <select id="schoolFilter" onchange="window.filterAudits()" class="w-full sm:w-auto border-stone-300 border rounded-md p-2 text-sm focus:ring-teal-500 focus:border-teal-500 bg-white">
+                        <option value="all">Tots els centres</option>
+                    </select>
+                    <button onclick="window.loadAllAudits()" class="w-full sm:w-auto bg-teal-100 text-teal-800 px-4 py-2 rounded-md text-sm font-bold hover:bg-teal-200 transition-colors shadow-sm flex items-center justify-center gap-2">
+                        <span>🔄</span> Actualitzar
+                    </button>
+                </div>
             </div>
             <div class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden">
                 <div class="overflow-x-auto">
@@ -651,6 +656,8 @@
             }
         };
 
+        window.allAuditsData = []; // Guardem les dades globalment per poder filtrar
+
         // Funció per carregar Totes les auditories (Només Professorat)
         window.loadAllAudits = async () => {
             if (!currentUser) return;
@@ -661,14 +668,57 @@
                 const auditsRef = collection(db, 'artifacts', appId, 'public', 'data', 'audits');
                 const querySnapshot = await getDocs(auditsRef);
                 const results = [];
+                const schools = new Set();
+                
                 querySnapshot.forEach((doc) => {
-                    results.push({ id: doc.id, ...doc.data() });
+                    const data = doc.data();
+                    results.push({ id: doc.id, ...data });
+                    if (data.studentSchool && data.studentSchool.trim() !== "") {
+                        schools.add(data.studentSchool.trim());
+                    }
                 });
-                window.renderTeacherData(results);
+                
+                window.allAuditsData = results;
+
+                // Actualitzar el desplegable de filtres
+                const filterSelect = document.getElementById('schoolFilter');
+                const currentValue = filterSelect.value;
+                filterSelect.innerHTML = '<option value="all">Tots els centres</option>';
+                
+                Array.from(schools).sort().forEach(school => {
+                    const option = document.createElement('option');
+                    option.value = school;
+                    option.textContent = school;
+                    filterSelect.appendChild(option);
+                });
+                
+                // Mantenir la selecció prèvia si encara existeix
+                if (schools.has(currentValue)) {
+                    filterSelect.value = currentValue;
+                } else {
+                    filterSelect.value = 'all';
+                }
+
+                window.filterAudits(); // Renderitzem aplicant el filtre
             } catch (error) {
                 console.error("Error carregant totes les dades:", error);
                 tbody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-rose-500">❌ Error de connexió al descarregar les dades. Revisa que les regles de Firestore estiguin configurades correctament.</td></tr>`;
             }
+        };
+
+        // Funció per aplicar el filtre
+        window.filterAudits = () => {
+            const filterValue = document.getElementById('schoolFilter').value;
+            let filteredData = window.allAuditsData;
+            
+            if (filterValue !== 'all') {
+                filteredData = window.allAuditsData.filter(item => 
+                    item.studentSchool && item.studentSchool.trim() === filterValue
+                );
+            }
+            
+            // Passem una còpia de l'array perquè el renderTeacherData l'ordena internament
+            window.renderTeacherData([...filteredData]);
         };
 
         // Lògica d'esborrat des del panell docent
