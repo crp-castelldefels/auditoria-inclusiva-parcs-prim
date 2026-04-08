@@ -120,7 +120,7 @@
             <!-- Botons d'Autenticació -->
             <div id="loginBtnGroup" class="p-4 border-t border-slate-700 text-center">
                 <button onclick="window.unlockTeacherView(event)" class="text-xs text-emerald-400 hover:text-emerald-300 flex items-center justify-center gap-2 w-full font-bold bg-slate-700/50 py-3 rounded-lg border border-emerald-500/30 transition-colors shadow">
-                    <span>🔒</span> Accés Mestres per carregar dades
+                    <span>🔒</span> Accés docents per carregar dades
                 </button>
             </div>
             
@@ -145,7 +145,7 @@
                     <h2 class="text-xl font-bold text-white mb-2">Accés Restringit</h2>
                     <p class="text-slate-400 text-sm mb-6">Per motius de privacitat, el mapa tèrmic requereix autenticació docent per llegir les dades de la base de dades municipal.</p>
                     <button onclick="window.unlockTeacherView(event)" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-6 rounded-lg transition-colors shadow-lg">
-                        Iniciar Sessió Com A Mestre
+                        Iniciar sessió com a docent
                     </button>
                 </div>
             </div>
@@ -157,11 +157,7 @@
     <div id="passwordModal" class="fixed inset-0 bg-slate-900/90 hidden items-center justify-center z-[500] backdrop-blur-md">
         <div class="bg-slate-800 rounded-2xl p-8 max-w-sm w-full shadow-2xl mx-4 relative border border-slate-600">
             <h3 class="font-black text-xl mb-2 text-white flex items-center gap-2"><span>🔒</span> Accés docent</h3>
-            <p class="text-sm text-slate-400 mb-4 font-medium">Introdueix el teu correu i contrasenya per consultar les dades geolocalitzades.</p>
-            
-            <div class="mb-4 bg-emerald-900/30 border border-emerald-500/30 p-3 rounded-lg">
-                <p class="text-xs text-emerald-300">💡 <strong>A la vista prèvia:</strong> pots fer servir la contrasenya <code class="bg-slate-900 px-1 rounded text-white">admin</code> per simular l'accés sense haver de configurar Firebase.</p>
-            </div>
+            <p class="text-sm text-slate-400 mb-4 font-medium">Introdueix el teu correu i contrasenya per consultar les dades geolocalitzades.</p
             
             <label class="block text-xs font-bold text-slate-300 mb-1">Correu electrònic:</label>
             <input type="email" id="teacherEmail" class="w-full border border-slate-600 rounded-lg p-3 mb-4 bg-slate-900 text-white focus:ring-emerald-500 focus:border-emerald-500" placeholder="Correu del mestre...">
