@@ -29,7 +29,7 @@
         <div class="flex items-center gap-3">
             <span class="text-3xl">🗺️</span>
             <div>
-                <h1 class="text-xl font-bold tracking-tight text-white">Observatori d'accessibilitat urbana</h1>
+                <h1 class="text-xl font-bold tracking-tight text-white">Observatori d'Accessibilitat Urbana</h1>
                 <p class="text-slate-400 text-xs">Castelldefels - Dades agregades de les escoles i instituts</p>
             </div>
         </div>
@@ -157,10 +157,10 @@
     <div id="passwordModal" class="fixed inset-0 bg-slate-900/90 hidden items-center justify-center z-[500] backdrop-blur-md">
         <div class="bg-slate-800 rounded-2xl p-8 max-w-sm w-full shadow-2xl mx-4 relative border border-slate-600">
             <h3 class="font-black text-xl mb-2 text-white flex items-center gap-2"><span>🔒</span> Accés docent</h3>
-            <p class="text-sm text-slate-400 mb-4 font-medium">Introdueix el teu correu i contrasenya per consultar les dades geolocalitzades.</p
+            <p class="text-sm text-slate-400 mb-4 font-medium">Introdueix el teu correu i contrasenya per consultar les dades geolocalitzades.</p>
             
             <label class="block text-xs font-bold text-slate-300 mb-1">Correu electrònic:</label>
-            <input type="email" id="teacherEmail" class="w-full border border-slate-600 rounded-lg p-3 mb-4 bg-slate-900 text-white focus:ring-emerald-500 focus:border-emerald-500" placeholder="Correu del mestre...">
+            <input type="email" id="teacherEmail" class="w-full border border-slate-600 rounded-lg p-3 mb-4 bg-slate-900 text-white focus:ring-emerald-500 focus:border-emerald-500" placeholder="Correu del docent...">
             
             <label class="block text-xs font-bold text-slate-300 mb-1">Contrasenya:</label>
             <input type="password" id="teacherPassword" class="w-full border border-slate-600 rounded-lg p-3 mb-4 bg-slate-900 text-white focus:ring-emerald-500 focus:border-emerald-500" placeholder="Contrasenya secreta...">
@@ -299,7 +299,7 @@
                     document.getElementById('mapOverlay').classList.add('hidden');
                     fetchDataFromFirebase();
                 } else {
-                    document.getElementById('cloudStatus').innerHTML = "<span>🔒</span> Bloquejat (Requereix accés)";
+                    document.getElementById('cloudStatus').innerHTML = "<span>🔒</span> Bloquejat (requereix accés)";
                     document.getElementById('loginBtnGroup').classList.remove('hidden');
                     document.getElementById('logoutBtnGroup').classList.add('hidden');
                     document.getElementById('mapOverlay').classList.remove('hidden');
